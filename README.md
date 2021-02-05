@@ -1,1 +1,1 @@
-<img src="./assests/logoDark.svg" alt="Logo Dev Finance">
+<img src="./assets/logoDark.svg" alt="Logo Dev Finance">
