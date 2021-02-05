@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dev.finance$</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,200;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img id="logo" src="./assets/logo.svg" alt="Logo Dev Finance">
+    </header>
+
+    <main class="container">
+        <section id="balance">
+            <h2 class="sr-only">Balanço</h2>
+
+            <div class="card">
+                <h3>
+                    Entradas
+                    <img src="assets/income.svg" alt="">
+                </h3>
+                <p id="incomeDisplay">R$ 0,00</p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    Saídas
+                    <img src="assets/expense.svg" alt="">
+                </h3>
+                <p id="expenseDisplay">R$ 0,00</p>
+            </div>
+
+            <div class="card total">
+                <h3>
+                    Total
+                    <img src="assets/total.svg" alt="">
+                </h3>
+                <p id="totalDisplay">R$ 0,00</p>
+            </div>
+
+        </section>
+
+        <section id="transaction">
+            <h2 class="sr-only">Transações</h2>
+
+            <a href="#" class="button new">+ Nova Transação</a>
+
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+
+            </table>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay a b c d e f g h">
+        <div class="modal">
+            <div id="form">
+                <h2>Nova Transação</h2>
+                <form action="">
+                    <div class="input-group">
+                        <label class="sr-only" for="description" >Descrição</label>
+                        <input type="text" id="description" name="description" placeholder="Descrição">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="sr-only" for="amount" >Valor</label>
+                        <input type="number" step="0.01" id="amount" name="amount" placeholder="0,00">
+                        <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="sr-only" for="date" >Data</label>
+                        <input type="date" id="date" name="date" placeholder="01/01/2021">
+                    </div>
+
+                    <div class="input-group actions">
+                        <a class="button cancel">Cancelar</a>
+                        <button>Salvar</button>
+                    </div>
+
+                    <div class="input-group error">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>2021 - dev.finance$</p>
+    </footer>
+
+    <script src="./scripts/script.js"></script>
+
+</body>
+
+</html>
