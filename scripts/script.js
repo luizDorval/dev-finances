@@ -1,10 +1,11 @@
 const Modal = {
     toggle(event) {
-        if (event.target.classList[0] === 'modal-overlay' || event.target.classList[1] === 'cancel' || event.type == 'submit') {
+        if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('cancel') || event.type === 'submit') {
             document.querySelector('.modal-overlay').classList.remove('active')
             App.reload()
-        } else {
+        } else if(!document.querySelector('.modal-overlay').classList.contains('active')) {
             document.querySelector('.modal-overlay').classList.add('active')
+            Form.clearFields()
         }
     }
 }
@@ -191,6 +192,12 @@ const Form = {
 
 const App = {
     init() {
+        // Events listeners
+        document.querySelector('.new').addEventListener('click', Modal.toggle)
+        document.querySelector('.modal-overlay').addEventListener('click', Modal.toggle)
+        document.querySelector('.cancel').addEventListener('click', Modal.toggle)
+        document.querySelector('form').addEventListener('submit', Form.submit)
+
         Transaction.all.forEach(DOM.addTransaction)
 
         DOM.updateBalance()
@@ -204,9 +211,3 @@ const App = {
 }
 
 App.init()
-
-// Events listeners
-document.querySelector('.new').addEventListener('click', Modal.toggle)
-document.querySelector('.modal-overlay').addEventListener('click', Modal.toggle)
-document.querySelector('.cancel').addEventListener('click', Modal.toggle)
-document.querySelector('form').addEventListener('submit', Form.submit)
