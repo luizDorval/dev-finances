@@ -8,11 +8,12 @@ f<h1 align="center">
 <p align="center">
   <a href="#-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
 
-<p align="center">The dev.finances is a financial control application built on discover marathon. <br><br>
+<p align="center">The dev.finances is a financial control application.<br><br>
 In the application you can register and delete transactions and see the balance of incomings and expenses of your account.</p>
 
 <p align="center">
