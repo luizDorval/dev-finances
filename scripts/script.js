@@ -16,6 +16,12 @@ const Storage = {
     },
     set(transactions) {
         localStorage.setItem('dev.finances:transactions', JSON.stringify(transactions))
+    },
+    getDarkMode() {
+        return localStorage.getItem('dev.finances:darkMode')
+    },
+    setDarkMode(state) {
+        localStorage.setItem('dev.finances:darkMode', state)
     }
 }
 
@@ -59,6 +65,23 @@ const Transaction = {
 const DOM = {
     transactionsContainer: document.querySelector('#data-table tbody'),
 
+    symbols: ['🌙', '✨'],
+
+    toggler: {
+        enable() {
+            document.querySelector('.toggle-btn').classList.add('active')
+            document.querySelector('.inner-circle').innerHTML = DOM.symbols[1]
+            document.querySelector('body').classList.add('dark-mode')
+            Storage.setDarkMode('active')
+        },
+        disable() {
+            document.querySelector('.toggle-btn').classList.remove('active')
+            document.querySelector('.inner-circle').innerHTML = DOM.symbols[0]
+            document.querySelector('body').classList.remove('dark-mode')
+            Storage.setDarkMode('inactive')
+        }
+    },
+
     innerHTMLTransaction(transaction, index) {
         const cssClass = transaction.amount > 0 ? 'income' : 'expense'
 
@@ -88,6 +111,12 @@ const DOM = {
     },
     clearTransactions() {
         this.transactionsContainer.innerHTML = ''
+    },
+    checkDarkMode() {
+        Storage.getDarkMode() === 'active' ? this.toggler.enable() : this.toggler.disable()
+    },
+    toggleDarkMode() {
+        Storage.getDarkMode() !== 'active' ? DOM.toggler.enable() : DOM.toggler.disable()
     }
 }
 
@@ -192,16 +221,11 @@ const Form = {
 
 const App = {
     init() {
-        // Events listeners
-        document.querySelector('.new').addEventListener('click', Modal.toggle)
-        document.querySelector('.modal-overlay').addEventListener('click', Modal.toggle)
-        document.querySelector('.cancel').addEventListener('click', Modal.toggle)
-        document.querySelector('form').addEventListener('submit', Form.submit)
-
         Transaction.all.forEach(DOM.addTransaction)
 
         DOM.updateBalance()
         Storage.set(Transaction.all)
+        DOM.checkDarkMode()
     },
     reload() {
         document.querySelector('.input-group.error').innerHTML = ``
@@ -209,5 +233,12 @@ const App = {
         this.init()
     }
 }
+
+// Events listeners
+document.querySelector('.new').addEventListener('click', Modal.toggle)
+document.querySelector('.modal-overlay').addEventListener('click', Modal.toggle)
+document.querySelector('.cancel').addEventListener('click', Modal.toggle)
+document.querySelector('form').addEventListener('submit', Form.submit)
+document.querySelector('header .container').addEventListener('click', DOM.toggleDarkMode)
 
 App.init()
