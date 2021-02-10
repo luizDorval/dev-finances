@@ -43,7 +43,7 @@ In the application you can register and delete transactions and see the balance 
 
  - Just clone this repo using: `git clone https://github.com/luizDorval/maratona-discover.git`
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
