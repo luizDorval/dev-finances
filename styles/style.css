@@ -311,7 +311,7 @@ footer {
     opacity: 0.6;
 }
 
-/* Scroll-Bar*/
+/* Scroll-Bar ==============*/
 ::-webkit-scrollbar {
     width: 0.5rem;
 }
@@ -333,8 +333,7 @@ footer {
     background-color: rgb(210, 210, 210);
 }
 
-/* Dark Mode*/
-
+/* Dark Mode ==============*/
 body.dark-mode {
     background-color: var(--soft-black);
 }
