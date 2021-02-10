@@ -12,8 +12,8 @@ f<h1 align="center">
 </p>
 
 
-<p align="center">The dev.finances is a financial control application built on a discover marathon. <br><br>
-In the application you can register and delete transactions and see the balance of incoming and expenses of your account.</p>
+<p align="center">The dev.finances is a financial control application built on discover marathon. <br><br>
+In the application you can register and delete transactions and see the balance of incomings and expenses of your account.</p>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT">
