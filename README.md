@@ -22,15 +22,15 @@ In the application you can register and delete transactions and see the balance 
     <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License MIT">
   </a>
 </p>
-
-
-
+<div  align="center">
+  <img src="./assets/demo.gif" height="250">
+</div>
 <hr />
 
 
 ## 📈 Running
 
- - See the project running <a>here</a>.
+ - See the project running <a href="https://maratona-discover-01-two.vercel.app/">here</a>.
 ## ⚛ Features
 
 - **HTML**
