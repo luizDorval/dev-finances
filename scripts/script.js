@@ -108,6 +108,7 @@ const DOM = {
         document.getElementById('incomeDisplay').innerHTML = Utils.formatCurrency(Transaction.incomes())
         document.getElementById('expenseDisplay').innerHTML = Utils.formatCurrency(Transaction.expenses())
         document.getElementById('totalDisplay').innerHTML = Utils.formatCurrency(Transaction.total())
+        Transaction.total() < 0 ? document.querySelector('.card.total').style.backgroundColor = 'var(--red)' : document.querySelector('.card.total').style.backgroundColor = 'var(--green)' // Changes the total card color, it is a nice visual effect to make the user identify easier his balance
     },
     clearTransactions() {
         this.transactionsContainer.innerHTML = ''
