@@ -3,7 +3,7 @@ const Modal = {
         if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('cancel') || event.type === 'submit') {
             document.querySelector('.modal-overlay').classList.remove('active')
             App.reload()
-        } else if(!document.querySelector('.modal-overlay').classList.contains('active')) {
+        } else if (!document.querySelector('.modal-overlay').classList.contains('active')) {
             document.querySelector('.modal-overlay').classList.add('active')
             Form.clearFields()
         }
@@ -58,7 +58,13 @@ const Transaction = {
 
     total() {
         return total = this.incomes() + this.expenses() // Here we use + because if we use - the expense will turn into a positive value
-    }
+    },
+    search(event) {
+        let filter = event.target.value.toUpperCase()
+        Transaction.all.forEach(({ date, amount, description }, index) => {
+            DOM.updateTable(date, amount, description, index, filter)
+        })
+    }    
 }
 
 // Get transactions from js an put on html
@@ -109,6 +115,10 @@ const DOM = {
         document.getElementById('expenseDisplay').innerHTML = Utils.formatCurrency(Transaction.expenses())
         document.getElementById('totalDisplay').innerHTML = Utils.formatCurrency(Transaction.total())
         Transaction.total() < 0 ? document.querySelector('.card.total').style.backgroundColor = 'var(--red)' : document.querySelector('.card.total').style.backgroundColor = 'var(--green)' // Changes the total card color, it is a nice visual effect to make the user identify easier his balance
+    },
+    updateTable(date, amount, description, index, filter) {
+        let tr = document.querySelector('#data-table tbody').getElementsByTagName('tr')
+        date.indexOf(filter) > -1 || amount.toString().indexOf(filter) > -1 || description.toUpperCase().indexOf(filter) > -1 ? tr[index].style.display = '' : tr[index].style.display = 'none'
     },
     clearTransactions() {
         this.transactionsContainer.innerHTML = ''
@@ -241,5 +251,8 @@ document.querySelector('.modal-overlay').addEventListener('click', Modal.toggle)
 document.querySelector('.cancel').addEventListener('click', Modal.toggle)
 document.querySelector('form').addEventListener('submit', Form.submit)
 document.querySelector('header .container').addEventListener('click', DOM.toggleDarkMode)
+document.querySelector('#search-bar').addEventListener('input', Transaction.search)
+
+
 
 App.init()

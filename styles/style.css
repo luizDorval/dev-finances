@@ -193,6 +193,23 @@ header {
     width: 100%;
 }
 
+#transaction div{
+    display: flex;
+    justify-content: space-between;
+}
+
+#search-bar {
+    font-size: 0.9rem;
+    filter: grayscale(100);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+#search-bar:focus {
+    outline: none;
+}
+
 #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
@@ -345,6 +362,20 @@ body.dark-mode .card {
 
 body.dark-mode .card.total {
     background-color: var(--green);
+}
+
+body.dark-mode #search-bar {
+    font-size: 0.9rem;
+    filter: grayscale(100);
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+body.dark-mode #search-bar:focus {
+    outline: none;
 }
 
 body.dark-mode #data-table thead th {
