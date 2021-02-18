@@ -23,7 +23,7 @@ In the application you can register and delete transactions and see the balance 
   </a>
 </p>
 <div  align="center">
-  <img src="./assets/demo.gif" height="250">
+  <img src="./assets/demo.gif" height="425">
 </div>
 <hr />
 
