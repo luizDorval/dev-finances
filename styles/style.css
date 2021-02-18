@@ -324,10 +324,12 @@ header {
 footer {
     text-align: center;
     padding: 4rem 0 2rem;
-    color: var(--dark-blue);
     opacity: 0.6;
 }
 
+footer a {
+    color: var(--dark-blue);
+}
 /* Scroll-Bar ==============*/
 ::-webkit-scrollbar {
     width: 0.5rem;
