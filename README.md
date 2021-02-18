@@ -25,12 +25,13 @@ In the application you can register and delete transactions and see the balance 
 <div>
   <br>
   <br>
-  <img src="./assets/demo.gif" alt="demo" height="400">
+  <img src="./assets/demo.gif" alt="Demonstration" height="400">
   <br>
   <br>
   <br>
   <br>
-  <img src="./assets/demoDarkMode.gif" alt="demo" height="400">
+  <img src="./assets/demoDarkMode.gif" alt="Demonstration of dark mode" height="400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/demoMobile.gif" alt="Demonstration of mobile" height="400">
 </div>
 
 <hr />
