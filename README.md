@@ -1,4 +1,4 @@
-f<h1 align="center">
+<h1 align="center">
 <br>
   <img src="./assets/logoDark.svg" alt="Logo Dev Finance">
 <br>
@@ -24,12 +24,12 @@ In the application you can register and delete transactions and see the balance 
 <div>
   <br>
   <br>
-  <img src="./assets/demo.gif" alt="demo" height="425">
+  <img src="./assets/demo.gif" alt="demo" height="400">
   <br>
   <br>
   <br>
   <br>
-  <img src="./assets/demoDarkMode.gif" alt="demo" height="425">
+  <img src="./assets/demoDarkMode.gif" alt="demo" height="400">
 </div>
 
 <hr />
