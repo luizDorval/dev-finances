@@ -114,8 +114,22 @@
         </div>
     </div>
 
+    <div class="modal-overlay check-modal">
+        <div class="modal check-modal">
+            <div>
+                <h2>Tem certeza que deseja excluir a transação?</h2>
+                <small class="help">Essa ação não poderá ser desfeita</small>
+                <div class="input-group actions">
+                    <a class="button cancel check-modal">Não</a>
+                    <button class="confirm" onclick="Transaction.remove(Transaction.removeIndex)">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p><a href="https://github.com/luizDorval/maratona-discover-01">2021 - dev.finance$ By Luiz Dorval</a></p>
+        <p><a target="blank" href="https://github.com/luizDorval/maratona-discover-01">2021 - dev.finance$ By Luiz
+                Dorval</a></p>
     </footer>
 
     <script src="./scripts/script.js"></script>

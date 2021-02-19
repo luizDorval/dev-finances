@@ -294,6 +294,10 @@ header {
     z-index: 1;
 }
 
+.modal.check-modal {
+    padding-top: 0.1rem;
+}
+
 /* Form ==============*/
 #form {
     max-width: 500px;

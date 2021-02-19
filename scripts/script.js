@@ -7,6 +7,12 @@ const Modal = {
             document.querySelector('.modal-overlay').classList.add('active')
             Form.clearFields()
         }
+    },
+    toggleCheck(index) {
+        console.log(index)
+        document.querySelector('.modal-overlay.check-modal').classList.toggle('active')
+        Transaction.removeIndex = index
+        App.reload()
     }
 }
 
@@ -28,12 +34,15 @@ const Storage = {
 const Transaction = {
     all: Storage.get(),
 
+    removeIndex: null,
+
     add(transaction) {
         this.all.push(transaction)
     },
 
     remove(index) {
         this.all.splice(index, 1)
+        Modal.toggleCheck()
         App.reload()
     },
 
@@ -61,10 +70,14 @@ const Transaction = {
     },
     search(event) {
         let filter = event.target.value.toUpperCase()
-        Transaction.all.forEach(({ date, amount, description }, index) => {
+        Transaction.all.forEach(({
+            date,
+            amount,
+            description
+        }, index) => {
             DOM.updateTable(date, amount, description, index, filter)
         })
-    }    
+    }
 }
 
 // Get transactions from js an put on html
@@ -98,7 +111,7 @@ const DOM = {
             <td class="${cssClass}">${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
-                <img src="assets/minus.svg" alt="Remover transação" onclick='Transaction.remove(${index})'>
+                <img src="assets/minus.svg" alt="Remover transação" onclick='Modal.toggleCheck(${index})'>
             </td>
         `
 
@@ -249,6 +262,7 @@ const App = {
 document.querySelector('.new').addEventListener('click', Modal.toggle)
 document.querySelector('.modal-overlay').addEventListener('click', Modal.toggle)
 document.querySelector('.cancel').addEventListener('click', Modal.toggle)
+document.querySelector('.cancel.check-modal').addEventListener('click', Modal.toggleCheck)
 document.querySelector('form').addEventListener('submit', Form.submit)
 document.querySelector('header .container').addEventListener('click', DOM.toggleDarkMode)
 document.querySelector('#search-bar').addEventListener('input', Transaction.search)
