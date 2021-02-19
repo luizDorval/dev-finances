@@ -136,6 +136,98 @@ const DOM = {
     clearTransactions() {
         this.transactionsContainer.innerHTML = ''
     },
+    orderByDescription() {
+        const table = document.querySelector("#data-table");
+        let switching = true;
+        let i
+        if (Utils.comparator == 0) {
+            Utils.comparator = 1
+            document.querySelector('.thead-description').innerHTML = 'Descrição🔼'
+            while (switching) {
+                switching = false;
+                let rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    let firstElement = rows[i].getElementsByTagName("TD")[0];
+                    let secondElement = rows[i + 1].getElementsByTagName("TD")[0];
+                    if (firstElement.innerHTML.toLowerCase() > secondElement.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        } else {
+            Utils.comparator = 0
+            document.querySelector('.thead-description').innerHTML = 'Descrição🔽'
+            while (switching) {
+                switching = false;
+                let rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    let firstElement = rows[i].getElementsByTagName("TD")[0];
+                    let secondElement = rows[i + 1].getElementsByTagName("TD")[0];
+                    if (firstElement.innerHTML.toLowerCase() < secondElement.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+    },
+    orderByAmount() {
+        let tbody = document.querySelector("#data-table tbody");
+        // get table rows as array for ease of use
+        let rows = [].slice.call(tbody.querySelectorAll("tr"));
+
+        if (Utils.comparator == 0) {
+            Utils.comparator = 1
+            document.querySelector('.thead-amount').innerHTML = "Valor🔼"
+            rows.sort((firstElement, secondElement) => {
+                return Number(firstElement.cells[1].innerHTML.replace(/[R$&nbsp;]|[,]/g, '')) - Number(secondElement.cells[1].innerHTML.replace(/[R$&nbsp;]|[,]/g, ''));
+            });
+        } else {
+            Utils.comparator = 0
+            document.querySelector('.thead-amount').innerHTML = "Valor🔽"
+            rows.sort((firstElement, secondElement) => {
+                return Number(secondElement.cells[1].innerHTML.replace(/[R$&nbsp;]|[,]/g, '')) - Number(firstElement.cells[1].innerHTML.replace(/[R$&nbsp;]|[,]/g, ''));
+                return secondElement.cells[1].innerHTML - firstElement.cells[1].innerHTML;
+            });
+        }
+        rows.forEach((tableRow) => {
+            tbody.appendChild(tableRow); // note that .appendChild() *moves* elements
+        });
+    },
+    orderByDate() {
+
+        let tbody = document.querySelector("#data-table tbody");
+        // get table rows as array for ease of use
+        let rows = [].slice.call(tbody.querySelectorAll("tr"));
+
+        if (Utils.comparator == 0) {
+            Utils.comparator = 1
+            document.querySelector('.thead-date').innerHTML = "Data🔼"
+            rows.sort((firstElement, secondElement) => {
+                return Utils.convertDate(firstElement.cells[2].innerHTML) - Utils.convertDate(secondElement.cells[2].innerHTML);
+            });
+        } else {
+            Utils.comparator = 0
+            document.querySelector('.thead-date').innerHTML = "Data🔽"
+            rows.sort((firstElement, secondElement) => {
+                return Utils.convertDate(secondElement.cells[2].innerHTML) - Utils.convertDate(firstElement.cells[2].innerHTML);
+            });
+        }
+        rows.forEach((tableRow) => {
+            tbody.appendChild(tableRow); // note that .appendChild() *moves* elements
+        });
+    },
     checkDarkMode() {
         Storage.getDarkMode() === 'active' ? this.toggler.enable() : this.toggler.disable()
     },
@@ -145,6 +237,8 @@ const DOM = {
 }
 
 const Utils = {
+    comparator: 0,
+
     formatCurrency(value) {
         const signal = Number(value) < 0 ? '-' : ''
 
@@ -168,6 +262,11 @@ const Utils = {
     formatDate(date) {
         const splittedDate = date.split('-')
         return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+    },
+
+    convertDate(date) {
+        let convertedDate = date.split("/");
+        return +(convertedDate[2] + convertedDate[1] + convertedDate[0]);
     }
 }
 
@@ -266,7 +365,9 @@ document.querySelector('.cancel.check-modal').addEventListener('click', Modal.to
 document.querySelector('form').addEventListener('submit', Form.submit)
 document.querySelector('header .container').addEventListener('click', DOM.toggleDarkMode)
 document.querySelector('#search-bar').addEventListener('input', Transaction.search)
-
+document.querySelector('.thead-description').addEventListener('click', DOM.orderByDescription)
+document.querySelector('.thead-amount').addEventListener('click', DOM.orderByAmount)
+document.querySelector('.thead-date').addEventListener('click', DOM.orderByDate)
 
 
 App.init()

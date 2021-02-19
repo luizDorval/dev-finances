@@ -176,7 +176,7 @@ header {
 }
 
 .card p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 3rem;
     margin-top: 1rem;
 }
@@ -231,6 +231,8 @@ header {
     font-weight: normal;
     padding: 1rem 2rem;
     text-align: left;
+    filter: grayscale(1);
+    cursor: pointer;
 }
 
 #data-table tbody tr {
@@ -373,7 +375,7 @@ body.dark-mode .card.total {
 body.dark-mode #search-bar {
     font-size: 0.9rem;
     filter: grayscale(100);
-    background-color: var(--dark-blue);
+    background-color: #111;
     color: white;
     padding: 10px;
     border: none;
